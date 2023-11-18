@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth']], function (){
     //Akses admin
     Route::group(['middleware' => ['cekUserLogin:1']], function () {
         Route::resource('admin', AdminController::class);
-        
+
     });
 
     //Akses user
@@ -48,6 +48,11 @@ Route::group(['middleware' => ['auth']], function (){
         //presensi
         Route::get('/presensi/create',[PresensiController::class, 'create']);
         Route::post('/presensi/store',[PresensiController::class, 'store']);
+
+        //Edit Profile
+        Route::get('/editprofile',[PresensiController::class, 'editprofile']);
+        Route::post('/presensi/{username}/updateprofile',[PresensiController::class, 'updateprofile']);
+
     });
 
 });
