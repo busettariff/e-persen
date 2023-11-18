@@ -25,12 +25,28 @@ class UserDataSeeder extends Seeder
                 'email' => 'admin@gmail.com'
             ],
             [
+                'nama_lengkap' => 'Puput Septiana',
+                'username' => 'puput',
+                'jabatan' => 'guru Mtk',
+                'password' =>bcrypt('password'),
+                'level' => 2,
+                'email' => 'puput@gmail.com'
+            ],
+            [
                 'nama_lengkap' => 'Arif Nugraha',
                 'username' => 'student',
                 'jabatan' => 'student',
                 'password' =>bcrypt('password'),
                 'level' => 2,
                 'email' => 'arif@gmail.com'
+            ],
+            [
+                'nama_lengkap' => 'Fikry R',
+                'username' => 'fikry',
+                'jabatan' => 'Guru Rpl',
+                'password' =>bcrypt('password'),
+                'level' => 2,
+                'email' => 'fikry@gmail.com'
             ],
       ];
 

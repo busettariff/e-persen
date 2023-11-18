@@ -53,6 +53,14 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('/editprofile',[PresensiController::class, 'editprofile']);
         Route::post('/presensi/{username}/updateprofile',[PresensiController::class, 'updateprofile']);
 
+        //Histori
+        Route::get('/presensi/histori',[PresensiController::class, 'histori']);
+        Route::post('/gethistori',[PresensiController::class, 'gethistori']);
+
+        //Izin
+        Route::get('/presensi/izin',[PresensiController::class, 'izin']);
+        Route::get('/presensi/formizin',[PresensiController::class, 'formizin']);
+
     });
 
 });

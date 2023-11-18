@@ -215,6 +215,7 @@
                     @endforeach
                 </ul>
             </div>
+
             <div class="tab-pane fade" id="profile" role="tabpanel">
                 <ul class="listview image-listview">
                     @foreach ($leaderboard as $d)
@@ -223,10 +224,10 @@
                             <img src="assets/img/sample/avatar/avatar1.jpg" alt="image" class="image">
                             <div class="in">
                                 <div>
-                                    <b>{{ $d->name }}</b><br>
-                                    <small class="text-muted">{{ $d->kelas }}</small>
+                                    <b>{{ $d->nama_lengkap }}</b><br>
+                                    <small class="text-muted">{{ $d->jabatan }}</small>
                                 </div>
-                                <span class="badge {{ $d->jam_in < " 07:00" ? "bg-success" : "bg-danger" }}">
+                                <span class="badge {{ strtotime($d->jam_in) < strtotime('07:00:00') ? 'bg-success' : 'bg-danger' }}">
                                     {{ $d->jam_in }}
                                 </span>
                             </div>

@@ -51,7 +51,7 @@ class PresensiController extends Controller
 
 
         if($radius > 70){
-            echo "error|Maaf Anda Berada Diluar Radius|";
+            echo "error|Maaf Anda Berada Diluar Radius, Jarak Anda".$radius."meter dari Kantor";
         }else {
             if($cek > 0){
                 $data_pulang = [
@@ -76,7 +76,7 @@ class PresensiController extends Controller
                 ];
                 $simpan = DB::table('presensi')->insert($data);
                 if($simpan) {
-                echo "success|Terimakasih, Selamat Belajar|in";
+                echo "success|Terimakasih, Selamat Bekerja|in";
                 Storage::put($file, $image_base64);
                 } else {
                 echo "error|Maaf Gagal Absen, Hubungi Operator Sekolah|in";
@@ -150,5 +150,41 @@ class PresensiController extends Controller
             } else {
                 return Redirect::back()->with(['error' => 'Data Gagal di Update']);
             }
+        }
+
+        public function histori()
+        {
+            $namabulan = ["","Januari","Febuari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+            return view('presensi.histori', compact(
+                'namabulan'
+            ));
+        }
+
+        public function gethistori(Request $request)
+        {
+            $bulan = $request->bulan;
+            $tahun = $request->tahun;
+            $username = Auth::user()->username;
+
+            $histori = DB::table('presensi')
+                ->whereRaw('MONTH(tgl_presensi)="' . $bulan . '"')
+                ->whereRaw('YEAR(tgl_presensi)="' . $tahun . '"')
+                ->where('username', $username)
+                ->orderBy('tgl_presensi')
+                ->get();
+
+            return view('presensi.gethistori', compact(
+                'histori'
+            ));
+        }
+
+        public function izin()
+        {
+            return view('presensi.izin');
+        }
+
+        public function formizin()
+        {
+        return view('presensi.formizin');
         }
 }
