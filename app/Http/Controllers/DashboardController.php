@@ -36,6 +36,15 @@ class DashboardController extends Controller
             ->get();
 
         $namabulan = ["","Januari","Febuari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+
+        $rekapizin = DB::table('izin')
+            ->selectRaw('SUM(IF(status="Izin",1,0)) as jmlizin, SUM(IF(status="Sakit",1,0)) as jmlsakit')
+            ->where('username', $username)
+            ->whereRaw('MONTH(tgl_izin)="'.$bulanini . '"')
+            ->whereRaw('YEAR(tgl_izin)="'.$tahunini . '"')
+            ->where('status_approved', 1)
+            ->first();
+
         return view('dashboard.index',compact(
             'presensihariini',
             'historibulanini',
@@ -43,7 +52,8 @@ class DashboardController extends Controller
             'bulanini',
             'tahunini',
             'rekappresensi',
-            'leaderboard'
+            'leaderboard',
+            'rekapizin'
         ));
     }
 }

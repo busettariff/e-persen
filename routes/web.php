@@ -37,13 +37,13 @@ Route::controller(LoginController::class)->group(function(){
 Route::group(['middleware' => ['auth']], function (){
 
     //Akses admin
-    Route::group(['middleware' => ['cekUserLogin:1']], function () {
+    Route::group(['middleware' => ['cekUserLogin:admin']], function () {
         Route::resource('admin', AdminController::class);
 
     });
 
     //Akses user
-    Route::group(['middleware' => ['cekUserLogin:2']], function () {
+    Route::group(['middleware' => ['cekUserLogin:user']], function () {
         Route::resource('dashboard', DashboardController::class);
         //presensi
         Route::get('/presensi/create',[PresensiController::class, 'create']);
@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth']], function (){
         //Izin
         Route::get('/presensi/izin',[PresensiController::class, 'izin']);
         Route::get('/presensi/formizin',[PresensiController::class, 'formizin']);
+        Route::post('/presensi/storeizin',[PresensiController::class, 'storeizin']);
 
     });
 
