@@ -27,7 +27,16 @@
 </div>
 <form action="/presensi/{{ $user->username }}/updateprofile" method="POST" enctype="multipart/form-data">
     @csrf
+
     <div class="col">
+        <div class="form-group boxed">
+            <div class="input-wrapper">
+                <button type="submit" class="btn btn-primary btn-block">
+                    <ion-icon name="refresh-outline"></ion-icon>
+                    Update
+                </button>
+            </div>
+        </div>
         <div class="form-group boxed">
             <div class="input-wrapper">
                 <input type="text" class="form-control" value="{{ $user->username }}" name="username" autocomplete="off"
@@ -38,6 +47,18 @@
             <div class="input-wrapper">
                 <input type="text" class="form-control" value="{{ $user->nama_lengkap }}" name="nama_lengkap" placeholder="Nama Lengkap"
                     autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group boxed">
+            <div class="input-wrapper">
+                <input type="text" class="form-control" value="{{ $user->alamat }}" name="alamat"
+                    placeholder="Nama Lengkap" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group boxed">
+            <div class="input-wrapper">
+                <input type="text" class="form-control" value="{{ $user->no_hp }}" name="no_hp"
+                    placeholder="Nama Lengkap" autocomplete="off">
             </div>
         </div>
         <div class="form-group boxed">
@@ -63,14 +84,7 @@
                 </span>
             </label>
         </div>
-        <div class="form-group boxed">
-            <div class="input-wrapper">
-                <button type="submit" class="btn btn-primary btn-block">
-                    <ion-icon name="refresh-outline"></ion-icon>
-                    Update
-                </button>
-            </div>
-        </div>
+
     </div>
 </form>
 @endsection

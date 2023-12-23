@@ -17,36 +17,46 @@ class UserDataSeeder extends Seeder
     {
         $user = [
             [
-                'nama_lengkap' => 'Administrator',
-                'username' => 'admin',
-                'jabatan' => 'ADMIN',
+                'nama_lengkap' => 'Arif Nugraha',
+                'username' => '22113',
+                'jabatan' => 'Administartor',
+                'alamat' => 'Desa Sampora, Cilimus',
                 'password' =>bcrypt('password'),
-                'level' => 1,
-                'email' => 'admin@gmail.com'
+                'level' => 'admin',
+                'email' => 'admin@gmail.com',
+                'kode_mapel' => 'RPL'
             ],
             [
                 'nama_lengkap' => 'Puput Septiana',
-                'username' => 'puput',
-                'jabatan' => 'guru Mtk',
+                'username' => '22112',
+                'jabatan' => 'Guru',
+                'alamat' => 'Desa Sampora',
+                'no_hp' => +628497242,
                 'password' =>bcrypt('password'),
-                'level' => 2,
-                'email' => 'puput@gmail.com'
+                'level' => 'user',
+                'email' => 'puput@gmail.com',
+                'kode_mapel' => 'RPL'
             ],
             [
-                'nama_lengkap' => 'Arif Nugraha',
-                'username' => 'student',
-                'jabatan' => 'student',
+                'nama_lengkap' => 'Rizky you',
+                'username' => '22111',
+                'jabatan' => 'Guru',
+                'alamat' => 'Desa Bandorasa',
+                'no_hp' => +62864344242,
                 'password' =>bcrypt('password'),
-                'level' => 2,
-                'email' => 'arif@gmail.com'
+                'level' => 'user',
+                'email' => 'arif@gmail.com',
+                'kode_mapel' => 'RPL'
             ],
             [
                 'nama_lengkap' => 'Fikry R',
-                'username' => 'fikry',
-                'jabatan' => 'Guru Rpl',
+                'username' => '22114',
+                'jabatan' => 'Guru',
+                'alamat' => 'Desa Sampora',
                 'password' =>bcrypt('password'),
-                'level' => 2,
-                'email' => 'fikry@gmail.com'
+                'level' => 'user',
+                'email' => 'fikry@gmail.com',
+                'kode_mapel' => 'RPL'
             ],
       ];
 

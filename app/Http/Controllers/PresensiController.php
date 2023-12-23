@@ -25,8 +25,8 @@ class PresensiController extends Controller
         $username = Auth::user()->username;
         $tgl_presensi = date("Y-m-d");
         $jam = date("H:i:s");
-        $latitudekantor = -6.852764677224854;
-        $longtitudekantor = 108.50440765696482;
+        $latitudekantor = -6.728802; 
+        $longtitudekantor = 108.552910;
         $lokasi = $request->lokasi;
         $lokasiuser = explode("," ,$lokasi);
         $latitudeuser = $lokasiuser[0];
@@ -116,6 +116,8 @@ class PresensiController extends Controller
         {
             $username = Auth::user()->username;
             $nama_lengkap = $request->nama_lengkap;
+            $alamat = $request->alamat;
+            $no_hp = $request->no_hp;
             $email = $request->email;
             $password = Hash::make($request ->password);
             $user = DB::table('users')->where('username', $username)->first();
@@ -127,12 +129,16 @@ class PresensiController extends Controller
             if(empty($request->password)) {
                 $data = [
                     'nama_lengkap' => $nama_lengkap,
+                    'alamat' => $alamat,
+                    'no_hp' => $no_hp,
                     'email' => $email,
                     'foto' => $foto
                 ];
             } else {
                 $data = [
                     'nama_lengkap' => $nama_lengkap,
+                    'alamat' => $alamat,
+                    'no_hp' => $no_hp,
                     'email' => $email,
                     'foto' => $foto,
                     'password' => $password
@@ -213,5 +219,26 @@ class PresensiController extends Controller
             } else {
                 return redirect('/presensi/izin')->with(['error'=>'Data Gagal Disimpan']);
             }
+        }
+
+        public function monitoring()
+        {
+            return view('presensi.monitoring');
+        }
+
+        public function getpresensi(Request $request)
+        {
+            $tanggal = $request->tanggal;
+            $presensi = DB::table('presensi')
+                ->select('presensi.*','nama_lengkap','nama_mapel','users.jabatan')
+                ->join('users','presensi.username','=','users.username')
+                ->join('mapel','users.kode_mapel','=','mapel.kode_mapel')
+                ->where('tgl_presensi',$tanggal)
+                ->get();
+
+            return view('presensi.getpresensi',compact(
+                'presensi'
+             ));
+
         }
 }

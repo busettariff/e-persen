@@ -56,4 +56,26 @@ class DashboardController extends Controller
             'rekapizin'
         ));
     }
+
+    public function indexadmin()
+    {
+        $hariini = date("Y-m-d");
+        $rekappresensi = DB::table('presensi')
+            ->selectRaw('COUNT(username) as jmlhadir, SUM(IF(jam_in > "07:05",1,0)) as jmlterlambat')
+            ->where('tgl_presensi', $hariini)
+            ->first();
+
+        $rekapizin = DB::table('izin')
+            ->selectRaw('SUM(IF(status="Izin",1,0)) as jmlizin, SUM(IF(status="Sakit",1,0)) as jmlsakit')
+            ->where('tgl_izin', $hariini)
+            ->where('status_approved', 1)
+            ->first();
+
+        return view('admin.index', compact(
+            'rekappresensi',
+            'rekapizin'
+        ));
+
+
+    }
 }
