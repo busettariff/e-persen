@@ -140,7 +140,7 @@
                     <div class="card-body text-center" style="padding: 12px 12px !important; line-height: 0.8rem">
                         <span class="badge bg-danger"
                             style="position: absolute; top:3px; right:5px; font-size:0.6rem; z-index:999">
-                            {{$rekapizin->jmlizin }}</span>
+                            {{ $rekapizin->jmlizin !== null ? $rekapizin->jmlizin : 0 }}</span>
                         <ion-icon name="newspaper-outline"
                             style="font-size: 1.6rem; color:green; margin-bottom: 0.5rem">
                         </ion-icon>
@@ -154,7 +154,7 @@
                     <div class="card-body text-center" style="padding: 12px 12px !important; line-height: 0.8rem">
                         <span class="badge bg-danger"
                             style="position: absolute; top:3px; right:5px; font-size:0.6rem; z-index:999">
-                            {{$rekapizin->jmlsakit }}</span>
+                            {{ $rekapizin->jmlsakit !== null ? $rekapizin->jmlsakit : 0 }}</span>
                         <ion-icon name="medkit-outline"
                             style="font-size: 1.6rem; color:rgb(255, 102, 0); margin-bottom: 0.5rem"></ion-icon>
                         <br>
@@ -239,8 +239,6 @@
                     @endforeach
                 </ul>
             </div>
-
-
         </div>
     </div>
     @endsection

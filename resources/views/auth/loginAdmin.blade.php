@@ -73,7 +73,7 @@
                                     </div>
                                     @endif
                                     <div class="mb-3">
-                                        <label class="form-label">Email Addres</label>
+                                        <label class="form-label">Username</label>
                                         <input type="text" name="username" value="{{ old('username') }}"
                                             class="form-control" id="username" placeholder="Username" autofocus>
                                         <i class="clear-input">
@@ -88,7 +88,7 @@
                                             </span>
                                         </label>
                                         <div class="input-group input-group-flat">
-                                            <input type="text" name="password" value="{{ old('password') }}"
+                                            <input type="password" name="password" value="{{ old('password') }}"
                                                 class="form-control" id="password" placeholder="Password" autofocus>
                                             <i class="clear-input">
                                                 <ion-icon name="close-circle"></ion-icon>

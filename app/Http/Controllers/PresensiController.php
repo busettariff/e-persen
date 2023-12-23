@@ -25,7 +25,7 @@ class PresensiController extends Controller
         $username = Auth::user()->username;
         $tgl_presensi = date("Y-m-d");
         $jam = date("H:i:s");
-        $latitudekantor = -6.728802; 
+        $latitudekantor = -6.728802;
         $longtitudekantor = 108.552910;
         $lokasi = $request->lokasi;
         $lokasiuser = explode("," ,$lokasi);
@@ -239,6 +239,44 @@ class PresensiController extends Controller
             return view('presensi.getpresensi',compact(
                 'presensi'
              ));
+
+        }
+
+        public function showmaps(Request $request)
+        {
+            $id = $request->id;
+            $presensi = DB::table('presensi')
+            ->where('presensi.id', $id)
+            ->join('users','presensi.username','=','users.username')
+            ->first();
+            return view('presensi.showmap', compact(
+                'presensi'
+            ));
+        }
+
+        public function laporan()
+        {
+            $namabulan = ["","Januari","Febuari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+            $user = DB::table('users')->orderBy('nama_lengkap')->get();
+            return view('presensi.laporan', compact(
+                'namabulan',
+                'user'
+            ));
+        }
+
+        public function cetaklaporan(Request $request)
+        {
+            $username = $request->username;
+            $bulan = $request->bulan;
+            $tahun = $request->tahun;
+            $namabulan =
+            ["","Januari","Febuari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+
+            return view('presensi.cetaklaporan', compact(
+                'bulan',
+                'tahun',
+                'namabulan'
+            ));
 
         }
 }
