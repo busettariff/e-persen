@@ -17,7 +17,8 @@ class PresensiController extends Controller
         $hariini = date("Y-m-d");
         $username = Auth::user()->username;
         $cek = DB::table('presensi')->where('tgl_presensi', $hariini)->where('username', $username)->count();
-        return view('presensi.create', compact('cek'));
+        $lok_kantor = DB::table('konfigurasi_lokasi')->where('id',1)->first();
+        return view('presensi.create', compact('cek', 'lok_kantor'));
     }
 
     public function location()
@@ -30,8 +31,10 @@ class PresensiController extends Controller
         $username = Auth::user()->username;
         $tgl_presensi = date("Y-m-d");
         $jam = date("H:i:s");
-        $latitudekantor = -6.728802;
-        $longtitudekantor = 108.552910;
+        $lok_kantor = DB::table('konfigurasi_lokasi')->where('id',1)->first();
+        $lok = explode(",", $lok_kantor->lokasi_kantor);
+        $latitudekantor = $lok[0];
+        $longtitudekantor = $lok[1];
         $lokasi = $request->lokasi;
         $lokasiuser = explode("," ,$lokasi);
         $latitudeuser = $lokasiuser[0];
@@ -55,7 +58,7 @@ class PresensiController extends Controller
         $file = $folderPath . $fileName;
 
 
-        if($radius > 70){
+        if($radius > $lok_kantor->radius){
             echo "error|Maaf Anda Berada Diluar Radius, Jarak Anda".$radius."meter dari Kantor";
         }else {
             if($cek > 0){
@@ -284,6 +287,7 @@ class PresensiController extends Controller
             ->where('username', $username)
             ->whereRaw('MONTH(tgl_presensi)="'.$bulan.'"')
             ->whereRaw('YEAR(tgl_presensi)="'.$tahun.'"')
+            ->orderBy('tgl_presensi')
             ->get();
             return view('presensi.cetaklaporan', compact(
                 'bulan',

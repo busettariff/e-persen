@@ -8,6 +8,7 @@ use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KonfigurasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,11 @@ Route::group(['middleware' => ['auth']], function (){
         Route::post('/showmaps', [PresensiController::class, 'showmaps']);
         Route::get('/presensi/laporan', [PresensiController::class, 'laporan']);
         Route::post('/presensi/cetaklaporan', [PresensiController::class, 'cetaklaporan']);
+
+        //Konfigurasi
+        Route::get('/konfigurasi/lokasikantor', [KonfigurasiController::class, 'lokasikantor']);
+        Route::post('/konfigurasi/updatelokasikantor', [KonfigurasiController::class, 'updatelokasikantor']);
+
     });
 
     //Akses user

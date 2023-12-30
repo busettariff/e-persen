@@ -135,7 +135,22 @@
                 <td>{{ $d->jam_in }}</td>
                 <td><img src="{{ url($path_in) }}" alt="" width="50px" height="50px"></td>
                 <td>{{ $d->jam_out !== null ? $d->jam_out : 'Belum Absen'}}</td>
-                <td><img src="{{ url($path_out) }}" alt="" width="50px" height="50px"></td>
+                <td>
+                    @if($d->jam_out !== null)
+                    <img src="{{ url($path_out) }}" alt="" width="50px" height="50px">
+                </td>
+                @else
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hourglass-high" width="24"
+                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M6.5 7h11" />
+                    <path d="M6 20v-2a6 6 0 1 1 12 0v2a1 1 0 0 1 -1 1h-10a1 1 0 0 1 -1 -1z" />
+                    <path d="M6 4v2a6 6 0 1 0 12 0v-2a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1z" />
+                </svg>
+                @endif
+
+
                 <td>
                     @if($d->jam_in > '07:00')
                     Terlambat
@@ -147,6 +162,22 @@
             </tr>
             @endforeach
             <!-- Add your data rows here -->
+        </table>
+        <table width="100%" style="margin-top:100px">
+            <tr>
+                <td colspan="2" style="text-align: right">Kuningan, {{ date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; vertical-align:bottom; height: 100px;">
+                    <u>Name</u><br>
+                    <i><b>Sekretaris</b></i>
+                </td>
+                <td style="text-align: center; vertical-align:bottom;">
+                    <u>Name</u><br>
+                    <i><b>Kepala Sekolah</b></i>
+                </td>
+            </tr>
+
         </table>
     </section>
 
