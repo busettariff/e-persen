@@ -20,6 +20,11 @@ class PresensiController extends Controller
         return view('presensi.create', compact('cek'));
     }
 
+    public function location()
+    {
+        return view('presensi.location');
+    }
+
     public function store(Request $request)
     {
         $username = Auth::user()->username;
@@ -271,11 +276,21 @@ class PresensiController extends Controller
             $tahun = $request->tahun;
             $namabulan =
             ["","Januari","Febuari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+            $user = DB::table('users')->where('username', $username)
+            ->join('mapel','users.kode_mapel','=','mapel.kode_mapel')
+            ->first();
 
+            $presensi = DB::table('presensi')
+            ->where('username', $username)
+            ->whereRaw('MONTH(tgl_presensi)="'.$bulan.'"')
+            ->whereRaw('YEAR(tgl_presensi)="'.$tahun.'"')
+            ->get();
             return view('presensi.cetaklaporan', compact(
                 'bulan',
                 'tahun',
-                'namabulan'
+                'namabulan',
+                'user',
+                'presensi'
             ));
 
         }

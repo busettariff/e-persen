@@ -36,7 +36,7 @@
                                             <path d="M12 15v3" />
                                         </svg>
                                     </span>
-                                    <input type="text" class="form-control" id="tanggal" name="tanggal"
+                                    <input type="text" class="form-control" value="{{ date("Y-m-d") }}" id="tanggal" name="tanggal"
                                         placeholder="Tanggal Presensi">
                                 </div>
 
@@ -57,6 +57,7 @@
                                             <th>Jam Pulang</th>
                                             <th>Foto</th>
                                             <th>Keterangan</th>
+                                            <th>Maps</th>
                                         </tr>
                                     </thead>
                                     <tbody id="loadpresensi"></tbody>
@@ -65,6 +66,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-blur fade" id="modal-showmaps" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lokasi Presensi User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="loadmap">
+
             </div>
         </div>
     </div>
@@ -79,21 +93,27 @@
             format: 'yyyy-mm-dd'
         });
 
-        $("#tanggal").change(function(e) {
-            var tanggal = $(this).val();
+        function loadpresensi(){
+            var tanggal = $("#tanggal").val();
             $.ajax({
-                type: 'POST',
-                url: '/getpresensi',
-                data:{
-                    _token: "{{ csrf_token() }}",
-                    tanggal: tanggal
-                },
-                cache:false,
-                success:function(respond){
-                    $("#loadpresensi").html(respond);
+            type: 'POST',
+            url: '/getpresensi',
+            data:{
+                _token: "{{ csrf_token() }}",
+                tanggal: tanggal
+            },
+            cache:false,
+            success:function(respond){
+                $("#loadpresensi").html(respond);
                 }
             });
+        }
+
+        $("#tanggal").change(function(e) {
+            loadpresensi();
         });
+
+        loadpresensi();
     });
 </script>
 @endpush

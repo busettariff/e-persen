@@ -65,6 +65,9 @@ Route::group(['middleware' => ['auth']], function (){
         //Monitoring
         Route::get('/presensi/monitoring', [PresensiController::class, 'monitoring']);
         Route::post('/getpresensi', [PresensiController::class, 'getpresensi']);
+        Route::post('/showmaps', [PresensiController::class, 'showmaps']);
+        Route::get('/presensi/laporan', [PresensiController::class, 'laporan']);
+        Route::post('/presensi/cetaklaporan', [PresensiController::class, 'cetaklaporan']);
     });
 
     //Akses user
@@ -72,6 +75,7 @@ Route::group(['middleware' => ['auth']], function (){
         Route::get('dashboard', [DashboardController::class,'index']);
         //presensi
         Route::get('/presensi/create',[PresensiController::class, 'create']);
+        Route::get('/presensi/location',[PresensiController::class, 'location']);
         Route::post('/presensi/store',[PresensiController::class, 'store']);
 
         //Edit Profile

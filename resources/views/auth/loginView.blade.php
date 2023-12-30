@@ -31,7 +31,7 @@
 
         <div class="login-form mt-4">
             <div class="section">
-                <img src="assets/img/login/silaru6.svg"  alt="image" class="form-image">
+                <img src="assets/img/login/silaru6.svg" alt="image" class="form-image">
             </div>
             <div class="section mt-4">
                 <h4> Silahkan Login </h4>
@@ -81,7 +81,7 @@
                     </div>
 
                     <div class="form-links mt-2">
-                        <div><a href="page-forgot-password.html" class="text-muted">Forgot Password?</a></div>
+                        <div><a href="mailto:alamat-email- email" class="text-muted">Forgot Password?</a></div>
                     </div>
 
                     <div class="form-button-group">

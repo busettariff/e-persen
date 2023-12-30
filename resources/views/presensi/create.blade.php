@@ -7,7 +7,7 @@
             <ion-icon name="chevron-back-outline"></ion-icon>
         </a>
     </div>
-    <div class="pageTitle"> E-Persen </div>
+    <div class="pageTitle"> SILARU </div>
     <div class="right"></div>
 </div>
 <!-- * App Header -->
@@ -94,12 +94,13 @@
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
+
         var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
         var circle = L.circle([-6.728802, 108.552910], {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: 70
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 70
         }).addTo(map);
     }
 

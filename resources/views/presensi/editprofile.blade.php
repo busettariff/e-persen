@@ -45,8 +45,8 @@
         </div>
         <div class="form-group boxed">
             <div class="input-wrapper">
-                <input type="text" class="form-control" value="{{ $user->nama_lengkap }}" name="nama_lengkap" placeholder="Nama Lengkap"
-                    autocomplete="off">
+                <input type="text" class="form-control" value="{{ $user->nama_lengkap }}" name="nama_lengkap"
+                    placeholder="Nama Lengkap" autocomplete="off">
             </div>
         </div>
         <div class="form-group boxed">
@@ -83,6 +83,11 @@
                     </strong>
                 </span>
             </label>
+        </div>
+        <div class="fab-button bottom-right" style="margin-bottom: 60px" >
+            <a href="/logout" class="fab" style="width: 40px; height: 40px; ">
+                <ion-icon name="log-out-outline"></ion-icon>
+            </a>
         </div>
 
     </div>
